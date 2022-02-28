@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  api:
+    container_name: 'bit-driver-location-service'
+    build: '.'
+    ports:
+      - '8080:8080'
+    depends_on:
+      - 'mongo'
+
+  mongo:
+    image: 'mongo:latest'
+    container_name: 'mongo'
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodata:/data/db
+    depends_on:
+      - mongoimport
+
+  mongoimport:
+    image: library/mongo:latest
+    container_name: my-import
+    volumes:
+      - ./coordinates.geojson:/data/import/coordinates.geojson
+    command: mongoimport --uri mongodb://mongo:27017/ --db bit-driver -c locations --file /data/import/coordinates.geojson --jsonArray
