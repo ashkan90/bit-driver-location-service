@@ -1,10 +1,6 @@
-
 server:
   port: "8082"
   host: ""
 
 database:
-  name: ""
-  user: ""
-  password: ""
-  addr: ""
+  dsn: "mongodb://mongo:27017/bit-driver"

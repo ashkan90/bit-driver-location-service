@@ -20,7 +20,7 @@ func main() {
 	var logger = log.Default()
 	var sv = NewServer()
 
-	flag.StringVar(&confPath, "service-config", "service_config", "")
+	flag.StringVar(&confPath, "service-config", "service_config.yaml", "")
 	flag.Parse()
 
 	var conf = config.NewGeneralConfig(confPath)
@@ -31,7 +31,7 @@ func main() {
 	}
 
 	var restAdapter = &rest.Adapter{
-		Config: conf.Server,
+		Config: &conf,
 		Logger: logger,
 		Server: sv,
 	}

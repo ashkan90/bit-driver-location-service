@@ -17,10 +17,7 @@ type Server struct {
 }
 
 type Database struct {
-	Name     string `yaml:"name,omitempty"`
-	User     string `yaml:"user,omitempty"`
-	Password string `yaml:"password,omitempty"`
-	Addr     string `yaml:"addr,omitempty"`
+	DSN string `yaml:"dsn,omitempty"`
 }
 
 func NewGeneralConfig(fPath string) GeneralConfig {
