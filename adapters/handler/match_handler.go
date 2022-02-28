@@ -34,5 +34,5 @@ func (h *DriverHandler) FindDriverLocation(c echo.Context) error {
 
 	var driverLocation = h.Service.FindNearestDriverLocation(cLocation)
 
-	return c.JSON(http.StatusOK, driverLocation)
+	return c.JSON(http.StatusOK, driverLocation.Geometry)
 }
