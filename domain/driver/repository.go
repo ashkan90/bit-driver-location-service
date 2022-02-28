@@ -23,10 +23,10 @@ func (r *RepositoryDriver) FindNearestDriverByLocation(loc request.CustomerLocat
 		"geometry": bson.M{
 			"$nearSphere": bson.M{
 				"$geometry": bson.M{
-					"type": "Point",
+					"type":        "Point",
 					"coordinates": []float64{loc.Longitude, loc.Latitude},
 				},
-				"$maxDistance": 3000,
+				"$maxDistance": 5000,
 			},
 		},
 	})
