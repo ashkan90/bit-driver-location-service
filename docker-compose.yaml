@@ -4,7 +4,7 @@ services:
     container_name: 'bit-driver-location-service'
     build: '.'
     ports:
-      - '8080:8080'
+      - '8083:8080'
     depends_on:
       - 'mongo'
 
