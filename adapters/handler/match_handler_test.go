@@ -17,7 +17,7 @@ import (
 	"testing"
 )
 
-func TestAsd(t *testing.T) {
+func TestDriverHandler_FindDriverLocation(t *testing.T) {
 	var loc = request.CustomerLocation{
 		Longitude: 100,
 		Latitude:  75,
