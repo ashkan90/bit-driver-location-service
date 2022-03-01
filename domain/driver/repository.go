@@ -35,7 +35,10 @@ func (r *RepositoryDriver) FindNearestDriverByLocation(loc request.CustomerLocat
 	}
 
 	var locations []response.DriverLocation
-	c.All(context.TODO(), &locations)
+	err = c.All(context.TODO(), &locations)
+	if err != nil {
+		return nil, err
+	}
 
 	return locations, nil
 }

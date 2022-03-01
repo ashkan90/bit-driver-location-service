@@ -17,7 +17,7 @@ func Connect(dsn string, collection string) *mongo.Database {
 	}
 
 	db := client.Database("bit-driver")
-	db.Collection(collection).Indexes().CreateMany(context.Background(), []mongo.IndexModel{
+	_, _ = db.Collection(collection).Indexes().CreateMany(context.Background(), []mongo.IndexModel{
 		{
 			Keys: bson.M{
 				"location": "2dsphere",
