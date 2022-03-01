@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"bit-driver-location-service/domain/driver"
 	"bit-driver-location-service/request"
 	"bit-driver-location-service/response"
 	"fmt"
@@ -14,7 +13,7 @@ const (
 )
 
 type DriverHandler struct {
-	Service *driver.Service
+	Service DriverImplementations
 }
 
 type DriverImplementations interface {
