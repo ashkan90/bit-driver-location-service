@@ -8,7 +8,7 @@ import (
 )
 
 type Service struct {
-	Repository *RepositoryDriver
+	Repository RepositoryImplementation
 	logger     *log.Logger
 }
 
@@ -21,7 +21,7 @@ type Distance struct {
 	Location   response.DriverLocation
 }
 
-func NewService(repo *RepositoryDriver, logger *log.Logger) *Service {
+func NewService(repo RepositoryImplementation, logger *log.Logger) *Service {
 	return &Service{Repository: repo, logger: logger}
 }
 
