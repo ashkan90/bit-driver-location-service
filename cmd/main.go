@@ -1,10 +1,12 @@
 package main
 
 import (
+	"bit-driver-location-service/adapters/database/mongo"
 	"bit-driver-location-service/adapters/rest"
 	"bit-driver-location-service/config"
 	"context"
 	"flag"
+	"fmt"
 	"github.com/labstack/echo/v4"
 	"log"
 	"os"
@@ -30,12 +32,18 @@ func main() {
 		conf.Server.Port = port
 	}
 
+	var locationsCollStr = "locations"
+	var locationsColl = mongo.Connect(conf.Database.DSN, locationsCollStr).Collection(locationsCollStr)
+
 	var restAdapter = &rest.Adapter{
 		Config: &conf,
 		Logger: logger,
 		Server: sv,
 	}
-	restAdapter.Serve()
+	restAdapter.Serve(locationsColl)
+	go func() {
+		logger.Fatal(sv.Start(fmt.Sprintf("%s:%s", conf.Server.Host, conf.Server.Port)))
+	}()
 
 	gracefulShutdown(logger, sv)
 }
